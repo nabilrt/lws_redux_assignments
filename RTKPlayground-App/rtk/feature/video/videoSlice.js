@@ -13,14 +13,14 @@ const fetchInitialVideos = createAsyncThunk("videos/fetchVideos", async () => {
   return videos;
 });
 
-const fetchTaggedVideos = (tagString = createAsyncThunk(
+const fetchTaggedVideos = createAsyncThunk(
   "videos/fetchTaggedVideos",
-  async () => {
+  async (tagString) => {
     const response = await fetch(`http://localhost:9000/videos?${tagString}`);
     const videos = await response.json();
     return videos;
   }
-));
+);
 
 const parseViews = (viewString) => {
   if (viewString.endsWith("k")) {
