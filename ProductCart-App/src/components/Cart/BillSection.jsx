@@ -3,7 +3,6 @@ import { useSelector } from "react-redux";
 
 export default function BillSection() {
   const cartItems = useSelector((state) => state.cart);
-  console.log(cartItems);
   const totalPrice = useMemo(() => {
     return cartItems.reduce(
       (totalPrice, item) => totalPrice + item.quantity * item.price,

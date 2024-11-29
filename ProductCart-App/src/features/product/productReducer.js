@@ -12,13 +12,6 @@ const nextId = (state) =>
 const productReducer = (state = initialState, action) => {
   switch (action.type) {
     case PRODUCT_ACTION_PROPS.ADD_PRODUCT:
-      console.log([
-        ...state,
-        {
-          ...action.payload,
-          id: nextId(state),
-        },
-      ]);
       return [
         ...state,
         {
