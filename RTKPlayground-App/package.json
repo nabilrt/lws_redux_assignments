@@ -1,0 +1,16 @@
+{
+  "name": "rtkplayground-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Nabil",
+  "license": "ISC",
+  "dependencies": {
+    "@reduxjs/toolkit": "^2.4.0",
+    "node-fetch": "^2.7.0",
+    "redux-logger": "^3.0.6"
+  }
+}
