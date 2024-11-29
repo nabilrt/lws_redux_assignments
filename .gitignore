@@ -1,5 +1,6 @@
 # Node modules
 **/node_modules/
+**/**/node_modules/
 node_modules/
 
 # Build output
@@ -19,8 +20,10 @@ pnpm-debug.log*
 
 # Dependency directories
 **/package-lock.json
+**/**/package-lock.lock
 package-lock.json
 **/yarn.lock
+**/**/yarn.lock
 yarn.lock
 **/pnpm-lock.yaml
 pnpm-lock.yaml

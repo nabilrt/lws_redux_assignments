@@ -1,0 +1,13 @@
+{
+  "books": [
+    {
+      "name": "Misir Ali",
+      "author": "Humayun Ahmed",
+      "thumbnail": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1596295771i/54777702.jpg",
+      "price": 15,
+      "rating": 5,
+      "featured": true,
+      "id": 2
+    }
+  ]
+}
