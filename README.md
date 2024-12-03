@@ -119,7 +119,7 @@
 
 # Project: TaskManagerRTK-App
 
-![TaskManagerRTK-App Image](https://imgur.com/a/pQVMHst)
+![TaskManagerRTK-App Image](https://imgur.com/ZdEcqUf)
 
 ## Features:
 
