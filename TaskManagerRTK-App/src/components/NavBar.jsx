@@ -11,13 +11,11 @@ export default function NavBar() {
   const navigate = useNavigate();
   const handleChange = (e) => {
     e.preventDefault();
-    dispatch(searchBy(input))
-      .unwrap()
-      .then(() => {
-        if (pathname !== "/") {
-          navigate("/");
-        }
-      });
+    dispatch(searchBy(input));
+
+    if (pathname !== "/") {
+      navigate("/");
+    }
   };
   return (
     <nav className="container relative py-3">
