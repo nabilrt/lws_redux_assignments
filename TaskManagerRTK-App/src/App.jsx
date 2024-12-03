@@ -5,9 +5,11 @@ import EditTask from "./pages/EditTask";
 import NavBar from "./components/NavBar";
 import { Provider } from "react-redux";
 import { store } from "./features/store";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 function App() {
   return (
-    <body className="text-[#111827]">
+    <div className="text-[#111827]">
       <BrowserRouter>
         <Provider store={store}>
           <NavBar />
@@ -17,8 +19,20 @@ function App() {
             <Route path="/task/:id" element={<EditTask />} />
           </Routes>
         </Provider>
+        <ToastContainer
+          position="top-right"
+          autoClose={1000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="light"
+        />
       </BrowserRouter>
-    </body>
+    </div>
   );
 }
 

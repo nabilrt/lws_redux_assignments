@@ -70,19 +70,19 @@
   ],
   "tasks": [
     {
-      "taskName": "Task One",
-      "teamMember": {
-        "name": "Saad Hasan",
-        "avatar": "/images/avatars/sadh.png",
-        "id": 2
-      },
-      "project": {
-        "id": 1,
-        "projectName": "Scoreboard",
-        "colorClass": "color-scoreboard"
-      },
+      "taskName": "Task Test",
       "deadline": "2023-03-15",
       "id": 1,
+      "teamMember": {
+        "name": "Akash Ahmed",
+        "avatar": "/images/avatars/akash.png",
+        "id": 3
+      },
+      "project": {
+        "id": 2,
+        "projectName": "Flight Booking",
+        "colorClass": "color-flight"
+      },
       "status": "inProgress"
     },
     {
@@ -98,23 +98,38 @@
         "colorClass": "color-flight"
       },
       "deadline": "2023-03-23",
-      "id": 2
+      "id": 2,
+      "status": "pending"
     },
     {
-      "taskName": "Task Three",
+      "taskName": "Implement RTK Query",
       "teamMember": {
-        "name": "Sumit Saha",
-        "avatar": "/images/avatars/sumit.png",
-        "id": 1
+        "name": "Saad Hasan",
+        "avatar": "/images/avatars/sadh.png",
+        "id": 2
       },
       "project": {
-        "id": 3,
-        "projectName": "Product Cart",
-        "colorClass": "color-productCart"
+        "id": 1,
+        "projectName": "Scoreboard",
+        "colorClass": "color-scoreboard"
       },
-      "deadline": "2023-03-03",
-      "id": 3,
-      "status": "inProgress"
+      "deadline": "2024-12-18",
+      "id": 3
+    },
+    {
+      "taskName": "Implement RTK Query",
+      "teamMember": {
+        "name": "Riyadh Hassan",
+        "avatar": "/images/avatars/riyadh.png",
+        "id": 5
+      },
+      "project": {
+        "id": 2,
+        "projectName": "Flight Booking",
+        "colorClass": "color-flight"
+      },
+      "deadline": "2024-12-20",
+      "id": 6
     }
   ]
 }

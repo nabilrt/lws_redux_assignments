@@ -5,6 +5,7 @@ import {
   useUpdateTaskStatusMutation,
 } from "../features/tasks/taskApi";
 import { useSelector } from "react-redux";
+import { toast } from "react-toastify";
 
 export default function Task({ task }) {
   const { taskName, teamMember, project, deadline, id, status } = task;
@@ -14,17 +15,12 @@ export default function Task({ task }) {
     .map((element) => `project.projectName_like=${element}`)
     .concat(`taskName_like=${searchKey}`)
     .join("&");
-  const [updateTaskStatus, { isLoading, isError, isSuccess, error }] =
+  const [updateTaskStatus, { isLoading, isError, error }] =
     useUpdateTaskStatusMutation();
 
   const [
     deleteTask,
-    {
-      isLoading: isDeleteLoading,
-      isError: isDeleteError,
-      isSuccess: isDeleteSuccess,
-      error: deleteError,
-    },
+    { isLoading: isDeleteLoading, isError: isDeleteError, error: deleteError },
   ] = useDeleteTaskMutation();
 
   useEffect(() => {
@@ -37,13 +33,27 @@ export default function Task({ task }) {
         data: { status: e.target.value },
         projectString: updatedTagString,
       }).unwrap();
+      if (isError) {
+        toast.error(
+          `Failed to Update ${taskName} Status to ${e.target.value} : ${error}`
+        );
+      } else {
+        toast.success(
+          `Successfully ${taskName} status updated to ${e.target.value}`
+        );
+      }
     } catch (error) {
       console.error("Failed to update task status:", error);
     }
   };
 
   const handleDelete = () => {
-    deleteTask({ id, projectString: updatedTagString });
+    deleteTask({ id, projectString: updatedTagString }).unwrap();
+    if (isDeleteError) {
+      toast.error(`Failed to Delete Task ${taskName}: ${deleteError}`);
+    } else {
+      toast.info(`Deleted ${taskName}`);
+    }
   };
 
   return (
@@ -55,14 +65,14 @@ export default function Task({ task }) {
       </div>
       <div className="lws-taskContainer">
         <h1 className="lws-task-title">{taskName}</h1>
-        <span className={`lws-task-badge ${project.colorClass}`}>
-          {project.projectName}
+        <span className={`lws-task-badge ${project?.colorClass}`}>
+          {project?.projectName}
         </span>
       </div>
       <div className="flex items-center gap-4">
         <div className="flex items-center gap-2">
-          <img src={teamMember.avatar} className="team-avater" />
-          <p className="lws-task-assignedOn">{teamMember.name}</p>
+          <img src={teamMember?.avatar} className="team-avater" />
+          <p className="lws-task-assignedOn">{teamMember?.name}</p>
         </div>
         {/* delete button will not shown to the ui, until the status of the task will be completed */}
         {status === "completed" ? (
