@@ -1,7 +1,51 @@
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import {
+  useDeleteTaskMutation,
+  useUpdateTaskStatusMutation,
+} from "../features/tasks/taskApi";
+import { useSelector } from "react-redux";
 
 export default function Task({ task }) {
   const { taskName, teamMember, project, deadline, id, status } = task;
+  const [taskStatus, setTaskStatus] = useState(status);
+  const { searchKey, projectList } = useSelector((state) => state.filter);
+  const updatedTagString = projectList
+    .map((element) => `project.projectName_like=${element}`)
+    .concat(`taskName_like=${searchKey}`)
+    .join("&");
+  const [updateTaskStatus, { isLoading, isError, isSuccess, error }] =
+    useUpdateTaskStatusMutation();
+
+  const [
+    deleteTask,
+    {
+      isLoading: isDeleteLoading,
+      isError: isDeleteError,
+      isSuccess: isDeleteSuccess,
+      error: deleteError,
+    },
+  ] = useDeleteTaskMutation();
+
+  useEffect(() => {
+    setTaskStatus(status);
+  }, [status]);
+  const handleTaskStatusChange = async (e) => {
+    try {
+      await updateTaskStatus({
+        id,
+        data: { status: e.target.value },
+        projectString: updatedTagString,
+      }).unwrap();
+    } catch (error) {
+      console.error("Failed to update task status:", error);
+    }
+  };
+
+  const handleDelete = () => {
+    deleteTask({ id, projectString: updatedTagString });
+  };
+
   return (
     <div className="lws-task">
       <div className="flex items-center gap-2 text-slate">
@@ -22,7 +66,11 @@ export default function Task({ task }) {
         </div>
         {/* delete button will not shown to the ui, until the status of the task will be completed */}
         {status === "completed" ? (
-          <Link className="lws-delete">
+          <button
+            className="lws-delete"
+            disabled={isDeleteLoading}
+            onClick={handleDelete}
+          >
             <svg
               fill="none"
               viewBox="0 0 24 24"
@@ -36,7 +84,7 @@ export default function Task({ task }) {
                 d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0"
               />
             </svg>
-          </Link>
+          </button>
         ) : (
           <Link className="lws-edit" to={`/task/${id}`}>
             <svg
@@ -56,7 +104,12 @@ export default function Task({ task }) {
           </Link>
         )}
 
-        <select className="lws-status" value={status}>
+        <select
+          className="lws-status"
+          value={taskStatus}
+          onChange={handleTaskStatusChange}
+          disabled={isLoading}
+        >
           <option value="pending">Pending</option>
           <option value="inProgress">In Progress</option>
           <option value="completed">Completed</option>

@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 import Task from "./Task";
 import { useGetTasksQuery } from "../features/tasks/taskApi";
 import { useSelector } from "react-redux";
-import { useEffect } from "react";
 export default function Tasks() {
   const { searchKey, projectList } = useSelector((state) => state.filter);
   const updatedTagString = projectList

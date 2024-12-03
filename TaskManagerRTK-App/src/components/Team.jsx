@@ -11,7 +11,7 @@ export default function Team() {
   } else if (!isLoading && !isError && team.length > 0) {
     content = team.map((t) => {
       return (
-        <div className="checkbox-container">
+        <div className="checkbox-container" key={t.id}>
           <img src={t.avatar} className="team-avater" />
           <p className="label">{t.name}</p>
         </div>
