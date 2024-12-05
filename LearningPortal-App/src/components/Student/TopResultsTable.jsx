@@ -1,4 +1,4 @@
-export default function TopResultsTable() {
+export default function TopResultsTable({ result }) {
   return (
     <table className="text-base w-full border border-slate-600/50 rounded-md my-4">
       <thead>
@@ -11,48 +11,17 @@ export default function TopResultsTable() {
         </tr>
       </thead>
       <tbody>
-        <tr className="border-b border-slate-600/50">
-          <td className="table-td text-center">4</td>
-          <td className="table-td text-center">Saad Hasan</td>
-          <td className="table-td text-center">50</td>
-          <td className="table-td text-center">50</td>
-          <td className="table-td text-center">100</td>
-        </tr>
-        <tr className="border-b border-slate-600/50">
-          <td className="table-td text-center">4</td>
-          <td className="table-td text-center">Saad Hasan</td>
-          <td className="table-td text-center">50</td>
-          <td className="table-td text-center">50</td>
-          <td className="table-td text-center">100</td>
-        </tr>
-        <tr className="border-b border-slate-600/50">
-          <td className="table-td text-center">4</td>
-          <td className="table-td text-center">Saad Hasan</td>
-          <td className="table-td text-center">50</td>
-          <td className="table-td text-center">50</td>
-          <td className="table-td text-center">100</td>
-        </tr>
-        <tr className="border-b border-slate-600/50">
-          <td className="table-td text-center">4</td>
-          <td className="table-td text-center">Saad Hasan</td>
-          <td className="table-td text-center">50</td>
-          <td className="table-td text-center">50</td>
-          <td className="table-td text-center">100</td>
-        </tr>
-        <tr className="border-b border-slate-600/50">
-          <td className="table-td text-center">4</td>
-          <td className="table-td text-center">Saad Hasan</td>
-          <td className="table-td text-center">50</td>
-          <td className="table-td text-center">50</td>
-          <td className="table-td text-center">100</td>
-        </tr>
-        <tr className="border-slate-600/50">
-          <td className="table-td text-center">4</td>
-          <td className="table-td text-center">Saad Hasan</td>
-          <td className="table-td text-center">50</td>
-          <td className="table-td text-center">50</td>
-          <td className="table-td text-center">100</td>
-        </tr>
+        {result?.slice(0, 20).map((res, index) => {
+          return (
+            <tr className="border-b border-slate-600/50" key={index}>
+              <td className="table-td text-center">{res?.rank}</td>
+              <td className="table-td text-center">{res?.name}</td>
+              <td className="table-td text-center">{res?.quizMark}</td>
+              <td className="table-td text-center">{res?.assignmentMark}</td>
+              <td className="table-td text-center">{res?.totalMark}</td>
+            </tr>
+          );
+        })}
       </tbody>
     </table>
   );

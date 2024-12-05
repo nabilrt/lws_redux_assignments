@@ -7,8 +7,8 @@ export default function PublicRoute({ children }) {
   return !isLoggedIn ? (
     children
   ) : isLoggedIn.role === "admin" ? (
-    <Navigate to="/admin/login" />
+    <Navigate to="/admin/dashboard" />
   ) : (
-    <Navigate to="/" />
+    <Navigate to="/student/courseplayer" />
   );
 }
