@@ -31,10 +31,6 @@ export default function QuizPage() {
     }
   }, [isLoading, isError, questionIndex, userAnswers, quizResultsInfo]);
 
-  useEffect(() => {
-    console.log(results);
-  }, [results]);
-
   const handleQuestionChange = (action) => {
     if (action === "prev") {
       setQuestionIndex((currIndex) => currIndex - 1);
@@ -159,8 +155,6 @@ export default function QuizPage() {
       student_name: user?.name,
       student_id: user?.id,
     };
-
-    console.log(quizMarkObject);
 
     submitQuiz({ data: quizMarkObject }).then(() => {
       setResults(totalResult);
