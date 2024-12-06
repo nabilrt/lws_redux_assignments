@@ -21,7 +21,17 @@ export default function NavBar() {
   return (
     <nav className="shadow-md">
       <div className="max-w-7xl px-5 lg:px-0 mx-auto flex justify-between py-3">
-        <img className="h-10" src="../assets/image/learningportal.svg" />
+        <img
+          className="h-10 cursor-pointer"
+          src="../assets/image/learningportal.svg"
+          onClick={() => {
+            if (user.role === "admin") {
+              navigate("/admin/dashboard");
+            } else {
+              navigate("/student/courseplayer");
+            }
+          }}
+        />
         <div className="flex items-center gap-3">
           <Link to="/student/leaderboard">Leaderboard</Link>
           <h2 className="font-bold">{user?.name}</h2>

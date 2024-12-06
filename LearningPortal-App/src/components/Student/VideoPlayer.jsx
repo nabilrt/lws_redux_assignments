@@ -48,7 +48,7 @@ export default function VideoPlayer({ video }) {
           <button
             onClick={() => navigate(`/quiz/${id}`)}
             className="px-3 font-bold py-1 border border-cyan text-cyan rounded-full text-sm hover:bg-cyan hover:text-primary disabled:bg-slate-400"
-            disabled={quizMark?.length > 0}
+          //  disabled={quizMark?.length > 0}
           >
             কুইজে অংশগ্রহণ করুন
           </button>

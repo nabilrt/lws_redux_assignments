@@ -1,5 +1,3 @@
-import { Link } from "react-router-dom";
-
 export default function VideoList({
   videos,
   selectedVideo,
@@ -41,9 +39,9 @@ export default function VideoList({
             </svg>
             {/* Description */}
             <div clas="flex flex-col w-full">
-              <p>
+              <div>
                 <p className="text-slate-50 text-sm font-medium">{vid.title}</p>
-              </p>
+              </div>
               <div>
                 <span className="text-gray-400 text-xs mt-1">
                   {vid.duration}
