@@ -4,7 +4,7 @@ import NavBar from "./Navbar";
 export default function AdminPrivateRoute({ children }) {
   const isLoggedIn = useAuth();
 
-  return isLoggedIn ? (
+  return isLoggedIn?.name && isLoggedIn?.role === "admin" ? (
     <>
       <NavBar />
       {children}

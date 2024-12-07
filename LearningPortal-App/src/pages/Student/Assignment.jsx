@@ -1,8 +1,10 @@
 import { useParams } from "react-router-dom";
 import { useGetAssignmentByVideoQuery } from "../../features/assignment/assignmentApi";
-import { useGetAssignmentMarksByVideoQuery } from "../../features/assignmentMark/assignmentMarkApi";
+import {
+  useGetAssignmentMarksByVideoQuery,
+  useSubmitAssignmentMutation,
+} from "../../features/assignmentMark/assignmentMarkApi";
 import { useSelector } from "react-redux";
-import { useEffect, useState } from "react";
 
 export default function AssignmentPage() {
   const { id, assignmentId } = useParams();
@@ -21,8 +23,28 @@ export default function AssignmentPage() {
     assignmentId: assignmentId,
     studentId: user?.id,
   });
+  const [
+    submitAssignment,
+    {
+      isLoading: isAssignmentSubmitting,
+      isError: isAssignmentSubmitError,
+      error: assignmentSubmitError,
+    },
+  ] = useSubmitAssignmentMutation();
   const handleForm = (formData) => {
-    console.log(formData);
+    submitAssignment({
+      data: {
+        repo_link: formData.get("repo_link"),
+        createdAt: new Date().toISOString(),
+        mark: 0,
+        status: "pending",
+        totalMark: assignment[0]?.totalMark,
+        title: assignment[0]?.title,
+        student_id: user?.id,
+        student_name: user?.name,
+        assignment_id: assignment[0]?.id,
+      },
+    }).then(() => {});
   };
 
   let content = null;
@@ -85,13 +107,21 @@ export default function AssignmentPage() {
             <button
               type="submit"
               className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-violet-600 hover:bg-violet-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-violet-500 mt-4"
-              //   disabled={
-              //     isLoading ||
-              //     credentials.password !== credentials.confirmPassword
-              //   }
+              disabled={isAssignmentSubmitting}
             >
               Submit Assignment
             </button>
+            {isAssignmentSubmitError && (
+              <div
+                className="px-4 py-2"
+                style={{
+                  color: "white",
+                  backgroundColor: "red",
+                }}
+              >
+                {assignmentSubmitError}
+              </div>
+            )}
           </form>
         </div>
       );

@@ -8,6 +8,12 @@ import Login from "./pages/Student/Login";
 import Register from "./pages/Student/Register";
 import QuizPage from "./pages/Student/Quiz";
 import AssignmentPage from "./pages/Student/Assignment";
+import AdminLogin from "./pages/Admin/Login";
+import AdminPrivateRoute from "./components/AdminPrivateRoute";
+import AdminDashboard from "./pages/Admin/Dashboard";
+import AdminVideos from "./pages/Admin/Videos";
+import AddVideo from "./pages/Admin/AddVideo";
+import EditVideo from "./pages/Admin/EditVideo";
 
 function App() {
   const authChecked = useAuthCheck();
@@ -58,12 +64,52 @@ function App() {
             </PrivateRoute>
           }
         />
-         <Route
+        <Route
           path="/student/assignment/:id/:assignmentId"
           element={
             <PrivateRoute>
               <AssignmentPage />
             </PrivateRoute>
+          }
+        />
+        <Route
+          path="/admin/login"
+          element={
+            <PublicRoute>
+              <AdminLogin />
+            </PublicRoute>
+          }
+        />
+        <Route
+          path="/admin/dashboard"
+          element={
+            <AdminPrivateRoute>
+              <AdminDashboard />
+            </AdminPrivateRoute>
+          }
+        />
+        <Route
+          path="/admin/videos"
+          element={
+            <AdminPrivateRoute>
+              <AdminVideos />
+            </AdminPrivateRoute>
+          }
+        />
+        <Route
+          path="/admin/videos/add"
+          element={
+            <AdminPrivateRoute>
+              <AddVideo />
+            </AdminPrivateRoute>
+          }
+        />
+        <Route
+          path="/admin/video/:id"
+          element={
+            <AdminPrivateRoute>
+              <EditVideo />
+            </AdminPrivateRoute>
           }
         />
       </Routes>
