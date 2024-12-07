@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { logOutUser } from "../features/auth/authSlice";
-
+import lwsLogo from "../assets/learningportal.svg";
 export default function NavBar() {
   const { user } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
@@ -23,7 +23,7 @@ export default function NavBar() {
       <div className="max-w-7xl px-5 lg:px-0 mx-auto flex justify-between py-3">
         <img
           className="h-10 cursor-pointer"
-          src="../assets/image/learningportal.svg"
+          src={lwsLogo}
           onClick={() => {
             if (user.role === "admin") {
               navigate("/admin/dashboard");

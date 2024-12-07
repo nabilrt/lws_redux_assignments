@@ -7,6 +7,7 @@ import CoursePlayer from "./pages/Student/CoursePlayer";
 import Login from "./pages/Student/Login";
 import Register from "./pages/Student/Register";
 import QuizPage from "./pages/Student/Quiz";
+import AssignmentPage from "./pages/Student/Assignment";
 
 function App() {
   const authChecked = useAuthCheck();
@@ -50,10 +51,18 @@ function App() {
           }
         />
         <Route
-          path="/quiz/:id"
+          path="/student/quiz/:id"
           element={
             <PrivateRoute>
               <QuizPage />
+            </PrivateRoute>
+          }
+        />
+         <Route
+          path="/student/assignment/:id/:assignmentId"
+          element={
+            <PrivateRoute>
+              <AssignmentPage />
             </PrivateRoute>
           }
         />

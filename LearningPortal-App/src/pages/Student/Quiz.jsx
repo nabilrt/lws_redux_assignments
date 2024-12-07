@@ -168,7 +168,7 @@ export default function QuizPage() {
       <div className="mx-auto max-w-7xl px-5 lg:px-0">
         <div className="mb-8">
           <h1 className="text-2xl font-bold">
-            Quizzes for "{quiz[0]?.video_title}"
+            Quizzes for "{quizResultsInfo[0]?.video_title}"
           </h1>
           <p className="text-sm text-slate-200">
             Each question contained 5 Mark.{" "}
