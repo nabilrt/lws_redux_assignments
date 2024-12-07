@@ -62,6 +62,60 @@ export const assignmentMarksApi = apiSlice.injectEndpoints({
         }
       },
     }),
+    updateAssignmentMark: builder.mutation({
+      query: ({ id, data }) => ({
+        url: `/assignmentMark/${id}`,
+        method: "PATCH",
+        body: data,
+      }),
+      async onQueryStarted(arg, { queryFulfilled, dispatch }) {
+        try {
+          const assignmentMark = await queryFulfilled;
+          if (assignmentMark?.data?.id) {
+            dispatch(
+              apiSlice.util.updateQueryData(
+                "getAllAssignmentMarks",
+                undefined,
+                (draft) => {
+                  if (draft) {
+                    console.log("here 1");
+                    return draft.map((dt) =>
+                      dt.id === arg.id ? assignmentMark?.data : dt
+                    );
+                  } else {
+                    // console.warn(`Task with id ${arg.id} not found in cache`);
+                  }
+                }
+              )
+            );
+
+            dispatch(
+              apiSlice.util.updateQueryData(
+                "getAssignmentMarksByVideo",
+                {
+                  assignmentId: arg.data.assignment_id.toString(),
+                  studentId: arg.data.student_id,
+                },
+                (draft) => {
+                  if (draft) {
+                    console.log("here 2");
+                    return draft.map((dt) =>
+                      dt.id === arg.id ? assignmentMark?.data : dt
+                    );
+                  } else {
+                    console.warn(
+                      `Task with id ${arg.id} not found in getQuizMarks cache`
+                    );
+                  }
+                }
+              )
+            );
+          }
+        } catch (error) {
+          console.error(error);
+        }
+      },
+    }),
   }),
 });
 
@@ -69,4 +123,5 @@ export const {
   useGetAssignmentMarksByVideoQuery,
   useGetAllAssignmentMarksQuery,
   useSubmitAssignmentMutation,
+  useUpdateAssignmentMarkMutation,
 } = assignmentMarksApi;

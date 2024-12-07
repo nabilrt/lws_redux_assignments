@@ -5,13 +5,12 @@ import moment from "moment";
 import { useGetAssignmentByVideoQuery } from "../../features/assignment/assignmentApi";
 import { useGetAssignmentMarksByVideoQuery } from "../../features/assignmentMark/assignmentMarkApi";
 import { useEffect, useState } from "react";
+import { useGetQuizByVideoQuery } from "../../features/quiz/quizApi";
 
 export default function VideoPlayer({ video }) {
   const navigate = useNavigate();
 
   const { id, title, description, createdAt, url } = video;
-  const user = useSelector((state) => state.auth.user);
-  const [assignmentCheck, setAssignmentCheck] = useState(false);
 
   const {
     data: assignment,
@@ -20,31 +19,31 @@ export default function VideoPlayer({ video }) {
     error,
   } = useGetAssignmentByVideoQuery(id);
 
+  const { data: quizzes } = useGetQuizByVideoQuery(id);
+
   let content = null;
   if (isLoading) {
     content = <div className="text-green-500">Loading...</div>;
   } else if (!isLoading && isError) {
     content = <div className="text-red-500">{error}</div>;
-  } else if (!isLoading && !isError && assignment.length === 0) {
-    content = <div className="text-blue-500">No Videos Found!</div>;
-  } else if (!isLoading && !isError && assignment.length > 0) {
+  } else if (!isLoading && !isError) {
     content = (
       <div className="flex gap-4">
         <button
           className="px-3 font-bold py-1 border border-cyan text-cyan rounded-full text-sm hover:bg-cyan hover:text-primary"
-          //disabled={assignmentMarks?.length > 0}
+          disabled={assignment?.length === 0}
           onClick={() =>
             navigate(`/student/assignment/${id}/${assignment[0]?.id}`)
           }
         >
-          এসাইনমেন্ট
+          {assignment?.length === 0 ? "কোন এসাইনমেন্ট নেই" : "এসাইনমেন্ট"}
         </button>
         <button
           onClick={() => navigate(`/student/quiz/${id}`)}
           className="px-3 font-bold py-1 border border-cyan text-cyan rounded-full text-sm hover:bg-cyan hover:text-primary disabled:bg-slate-400"
-          //  disabled={quizMark?.length > 0}
+          disabled={quizzes?.length === 0}
         >
-          কুইজে অংশগ্রহণ করুন
+          {quizzes?.length === 0 ? "কোন কুইজ নেই" : "কুইজে অংশগ্রহণ করুন"}
         </button>
       </div>
     );

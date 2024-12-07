@@ -82,6 +82,15 @@
       "views": "91.2K",
       "duration": "31:30",
       "createdAt": "2023-02-24T17:59:00.000Z"
+    },
+    {
+      "title": "Full Video: Chuttamalle - Devara | NTR | Janhvi Kapoor | Anirudh | Shilpa Rao | Koratala Siva",
+      "description": "Here’s #Chuttamalle Full Video from Devara Part - 1 ft. NTR, Janhvi Kapoor. Written & Directed by Koratala Siva. The Film’s music is composed by Anirudh Ravichander. ",
+      "url": "https://www.youtube.com/embed/GWNrPJyRTcA?si=kY8T_gstlGF4mhnG",
+      "views": "37.6M",
+      "duration": "3:36",
+      "createdAt": "2024-12-07T09:41:45.406Z",
+      "id": 3
     }
   ],
   "assignments": [
@@ -89,7 +98,7 @@
       "id": 1,
       "title": "Assignment 1 - Implement Debounce Function",
       "video_id": 1,
-      "video_title": "Debounce Function in JavaScript - JavaScript Job Interview question",
+      "video_title": "Debounce Function in JavaScript",
       "totalMark": 100
     },
     {
@@ -195,9 +204,9 @@
       "title": "Assignment 1 - Implement Debounce Function",
       "createdAt": "2021-01-15T15:17:01.727Z",
       "totalMark": 100,
-      "mark": 0,
+      "mark": "100",
       "repo_link": "https://github.com/Learn-with-Sumit/assignment-1",
-      "status": "pending"
+      "status": "published"
     },
     {
       "id": 2,
@@ -226,8 +235,8 @@
     {
       "repo_link": "https://github.com/nabilrt/lws_redux_assignments",
       "createdAt": "2024-12-07T07:54:18.582Z",
-      "mark": 0,
-      "status": "pending",
+      "mark": "100",
+      "status": "published",
       "totalMark": 100,
       "title": "Assignment 1 - Implement Debounce Function",
       "student_id": 8,

@@ -21,7 +21,7 @@ export default function AdminDashboardPage() {
               </svg>
               <p className="text-slate-200 mt-3 ">Videos</p>
             </Link>
-            <a href="./Assignment.html" className="dashboard-item-card">
+            <Link to="/admin/assignments" className="dashboard-item-card">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -37,7 +37,7 @@ export default function AdminDashboardPage() {
                 />
               </svg>
               <p className="text-slate-200 mt-3">Assignment</p>
-            </a>
+            </Link>
             <a href="./Quizzes.html" className="dashboard-item-card">
               <svg
                 fill="none"
@@ -54,7 +54,7 @@ export default function AdminDashboardPage() {
               </svg>
               <p className="text-slate-200 mt-3 ">Quizzes</p>
             </a>
-            <a href="./AssignmentMark.html" className="dashboard-item-card">
+            <Link to="/admin/assignmentMarks" className="dashboard-item-card">
               <svg
                 viewBox="0 0 24 24"
                 strokeWidth="1.5"
@@ -68,7 +68,7 @@ export default function AdminDashboardPage() {
                 />
               </svg>
               <p className="text-slate-200 mt-3 ">Assignment Mark</p>
-            </a>
+            </Link>
           </div>
         </div>
       </div>

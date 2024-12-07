@@ -14,6 +14,10 @@ import AdminDashboard from "./pages/Admin/Dashboard";
 import AdminVideos from "./pages/Admin/Videos";
 import AddVideo from "./pages/Admin/AddVideo";
 import EditVideo from "./pages/Admin/EditVideo";
+import AdminAssignmentPage from "./pages/Admin/Assignment";
+import AddAssignmentPage from "./pages/Admin/AddAssignment";
+import EditAssignmentPage from "./pages/Admin/EditAssignment";
+import AssignmentMarkPage from "./pages/Admin/AssignmentMark";
 
 function App() {
   const authChecked = useAuthCheck();
@@ -109,6 +113,38 @@ function App() {
           element={
             <AdminPrivateRoute>
               <EditVideo />
+            </AdminPrivateRoute>
+          }
+        />
+        <Route
+          path="/admin/assignments"
+          element={
+            <AdminPrivateRoute>
+              <AdminAssignmentPage />
+            </AdminPrivateRoute>
+          }
+        />
+        <Route
+          path="/admin/assignment/add"
+          element={
+            <AdminPrivateRoute>
+              <AddAssignmentPage />
+            </AdminPrivateRoute>
+          }
+        />
+        <Route
+          path="/admin/assignment/:id"
+          element={
+            <AdminPrivateRoute>
+              <EditAssignmentPage />
+            </AdminPrivateRoute>
+          }
+        />
+        <Route
+          path="/admin/assignmentMarks"
+          element={
+            <AdminPrivateRoute>
+              <AssignmentMarkPage />
             </AdminPrivateRoute>
           }
         />

@@ -200,7 +200,7 @@ export default function QuizPage() {
         <div className="space-y-8 ">
           {quiz?.map((qz, index) => {
             return (
-              <div className="quiz">
+              <div className="quiz" key={qz?.id}>
                 <div className="w-full flex justify-between">
                   <h4 className="question">
                     Question {index + 1} - {qz?.question}
